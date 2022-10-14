@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Calculadora";
+}
+<div class="card shadow mb-3">
+    <div class="card-header py-3">
+        <h1 class="m-0 font-weight-bolder text-white">
+            <label>Calculadora</label>
+        </h1>
+    </div>
+    <hr />
+    <div>
+        <label class="alert-info">@ViewBag.Ms</label>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div>
+            <form action="../Calculadora/Index" id="form" method="post">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="form-row mb-3">
+                            <div class="col-md-2 font-weight-bolder">
+                                <label>Número A:</label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="number" id="numeroAId" name="numeroA" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7">
+                        <div class="form-row mb-3">
+                            <div class="col-md-2 font-weight-bolder">
+                                <label>Número B:</label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="number" id="numeroBId" name="numeroB" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-row mb-3">
+                        <div class="form-row mb-3">
+                            <div class="col-md-12 ">
+                                <button id="Calcular" disabled class="btn btn-success btn-icon-split float-right">Calcular</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-row mb-3">
+                        <div class="col-md-2 font-weight-bolder">
+                            <label>Resultado:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="respuesta" type="number" disabled value="@ViewData["respuesta"]" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script>
+                let form = document.querySelector("#form");
+                let btn = document.querySelector("#Calcular");
+
+                function validar() {
+                    let deshabilitar = false;
+                    if (form.numeroAId.value == "") {
+                        deshabilitar = true;
+                    }
+
+                    if (form.numeroBId.value == "") {
+                        deshabilitar = true;
+                    }
+
+                    if (deshabilitar == true) {
+                        btn.disabled = true;
+                    } else {
+                        btn.disabled = false;
+                    }
+                }
+
+                form.addEventListener("keyup", validar);
+            </script>
+        </div>
+    </div>
+</div>
